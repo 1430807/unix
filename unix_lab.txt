@@ -1,23 +1,33 @@
 1)
 #!/bin/bash 
-# Define valid username and password valid_username="myusername" valid_password="mypassword" 
-# Read username from user read -p "Enter username: " username 
-# Read password from user without displaying input read -s -p "Enter password: " password echo 
-# Check if the entered username and password are valid if [ "$username" == "$valid_username" ]&& [ "$password" == "$valid_password" ]; then     echo "Valid username and password." else     echo "Invalid username or password." fi 
+valid_username="myusername" 
+valid_password="mypassword" 
+read -p "Enter username: " username 
+read -s -p "Enter password: " password echo 
+if [ "$username" == "$valid_username" ]&& [ "$password" == "$valid_password" ]; then     
+echo "Valid username and password." 
+else     
+echo "Invalid username or password." fi 
  
  
 2)
-#!/bin/sh a=10 b=20
- x=”hello” y=”world” 
+#!/bin/sh 
+a=10 
+b=20
+x=”hello” 
+y=”world” 
 echo “a+b: $(($a+$b))” 
 echo “a-b: $(($a-b))” 
-echo “a%b:
-$(($a%$b))” echo “a/b: 
-$(($a/b))” 
-c=$x$y echo $c if ($a==$b)
-then  echo “a is equal to b” 
+echo “a%b:$(($a%$b))” 
+echo “a/b: $(($a/b))” 
+c=$x$y 
+echo $c 
+if ($a==$b)
+then  
+echo “a is equal to b” 
 else 
-echo “a is not equal to b” fi 
+echo “a is not equal to b” 
+fi 
 
 3)
 ```bash 
@@ -30,66 +40,94 @@ $ echo "$movie" | tr '[:lower:]' '[:upper:]'
 ```bash 
 #!/bin/bash 
  
-# Read file path from user read -p "Enter a file path: " file_path 
- 
-# Check if the file is a directory if [ -d "$file_path" ]; then     echo "The file is a directory." else     echo "The file is not a directory." fi ``` 
+read -p "Enter a file path: " file_path 
+if [ -d "$file_path" ]; then     
+echo "The file is a directory." 
+else     
+echo "The file is not a directory." 
+fi  
  
 5)
 #!/bin/bash 
  
-# Read input string from user read -p "Enter a string: " input_string 
- 
-# Perform pattern matching using grep if echo "$input_string" | grep -q "pattern"; then     echo "Pattern found in the input string." else     echo "Pattern not found in the input string." fi ``` 
+read -p "Enter a string: " input_string 
+if echo "$input_string" | grep -q "pattern"; then   
+echo "Pattern found in the input string." 
+else     
+echo "Pattern not found in the input string." 
+fi  
 
 6)
 ```bash 
 #!/bin/bash 
  
-# Store all arguments in an array args=("$@") 
- 
-# Get the number of arguments num_args=$# 
- 
-# Print arguments in reverse order for (( i=num_args-1; i>=0; i-- )); do     echo "${args[$i]}" done 
+args=("$@") 
+num_args=$#  
+for (( i=num_args-1; i>=0; i-- )); do     
+echo "${args[$i]}" 
+done 
 
 
 7)
-
-```bash 
+ 
 #!/bin/bash 
  
-# Read year from user read -p "Enter a year: " year # Check if the year is a leap year if (( year % 4 == 0 && year % 100 != 0 )) || (( year % 400 == 0 )); then     echo "The year $year is a leap year." else     echo "The year $year is not a leap year." fi ``` 
+read -p "Enter a year: " year  
+if (( year % 4 == 0 && year % 100 != 0 )) || (( year % 400 == 0 )); then     
+echo "The year $year is a leap year." 
+else     
+echo "The year $year is not a leap year." 
+fi  
 
 
 8)
-echo "Enter first  nuumber: " read n1 echo "Enter second  nuumber: " read n2 m=$n1 n=$n2 r=$n2 while [ $r -ne 0  ];do   r=$(( n1%n2 ))   if [ $r -eq 0 ];then         break   else      ((n1=$n2)) 
+echo "Enter first  nuumber: " 
+read n1 
+echo "Enter second  nuumber: " 
+read n2 
+m=$n1 
+n=$n2 
+r=$n2 
+while [ $r -ne 0  ];do   
+r=$(( n1%n2 ))   
+if [ $r -eq 0 ];then         
+break   
+else      
+((n1=$n2)) 
      ((n2=$r)) 
   fi 
-done echo  "GCD of %d and %d is %d \n" $m $n $n2 echo  "LCM Of %d and %d is %d \n" $m $n $((($m*$n)/$n2)) 
+done 
+echo  "GCD of %d and %d is %d \n" $m $n $n2 
+echo  "LCM Of %d and %d is %d \n" $m $n $((($m*$n)/$n2)) 
   
 9)
 ```bash 
 #!/bin/bash 
  
-# Function to check if a number is prime is_prime() {     number=$1 
-    if ((number < 2)); then         return 1 
+ is prime is_prime() {     
+number=$1 
+    if ((number < 2)); then        
+return 1 
     fi 
  
-    # Check divisibility up to the square root of the number     for ((i = 2; i * i<= number; i++)); do         if ((number % i == 0)); then             return 1         fi 
-    done 
+ for ((i = 2; i * i<= number; i++)); do         
+ if ((number % i == 0)); then 
+  return 1 
+ fi 
+done 
  
     return 0 
 } 
  
 10)
-```bash 
 #!/bin/bash 
- 
-# Read string from user read -p "Enter a string: " input_string 
- 
-# Remove non-alphanumeric characters and convert to lowercase clean_string=$(echo "$input_string" | tr -dc '[:alnum:]' | tr '[:upper:]' '[:lower:]') 
- 
-# Reverse the string reverse_string=$(echo "$clean_string" | rev) 
- 
-# Check if the string is a palindrome if [ "$clean_string" = "$reverse_string" ]; then     echo "The string '$input_string' is a palindrome." else     echo "The string '$input_string' is not a palindrome." fi ``` 
+read -p "Enter a string: " input_string 
+clean_string=$(echo "$input_string" | tr -dc '[:alnum:]' | tr '[:upper:]' '[:lower:]') 
+reverse_string=$(echo "$clean_string" | rev) 
+if [ "$clean_string" = "$reverse_string" ]; then
+echo "The string '$input_string' is a palindrome." 
+else     
+echo "The string '$input_string' is not a palindrome." 
+fi  
  
 
